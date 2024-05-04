@@ -1,0 +1,5 @@
+config:
+  action_mailer:
+    delivery_method: :smtp
+
+mail_from_address: env@example.com

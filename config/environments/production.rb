@@ -42,7 +42,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -68,7 +68,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -87,4 +87,14 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.action_mailer.delivery_method = Settings.config.action_mailer.delivery_method
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: Rails.application.credentials.mail_smtp_server,
+    domain: Rails.application.credentials.mail_domain,
+    user_name: Rails.application.credentials.mail_user_name,
+    password: Rails.application.credentials.mail_user_password,
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
 end

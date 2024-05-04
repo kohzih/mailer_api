@@ -19,8 +19,8 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
-  username: <%= ENV['DB_USER'] %>
-  password: <%= ENV['DB_USER_PASSWORD'] %>
+  username: <%= Rails.application.credentials.db_user %>
+  password: <%= Rails.application.credentials.db_user_password %>
 development:
   <<: *default
   database: mailer_api_development

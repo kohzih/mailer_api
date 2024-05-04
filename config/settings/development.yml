@@ -1,0 +1,5 @@
+config:
+  action_mailer:
+    delivery_method: :letter_opener_web
+
+mail_from_address: from@example.com

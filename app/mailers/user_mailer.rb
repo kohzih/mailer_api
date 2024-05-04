@@ -1,9 +1,10 @@
 class UserMailer < ApplicationMailer
-  default from: ENV['MAIL_FROM_ADDRESS']
+  default from: Settings.config.mail_from_address
 
   def send_email(email, subject, message)
+    @message = message
     mail(to: email, subject: subject) do |format|
-      format.text { render plain: message }
+      format.text { render 'send_email' }
     end
   end
 end
